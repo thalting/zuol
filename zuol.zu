@@ -1,0 +1,26 @@
+# This software is in the public domain.
+
+FUNC rainbow(int i) list<int>
+  float pi = 3.14158
+  int red = ((0.1 * i).sin() * 127.0 + 128.0).ToString().toInt()
+  int green = ((0.1 * i.ToString().toFloat() + 2.0 * pi / 3.0).sin() * 127.0 + 128.0).ToString().toInt()
+  int blue = ((0.1 * i.ToString().toFloat() + 4.0 * pi / 3.0).sin() * 127.0 + 128.0).ToString().toInt()
+
+  RETURN [red, green, blue]
+}
+
+FUNC Main() int
+  int i = 0
+  WHILE TRUE
+    int reader = IO.readChar()
+
+    IF reader == IO.eof
+      BREAK
+    }
+
+    list<int> rgb = rainbow(i)
+    IO.write("\033[38;2;\(rgb[0]);\(rgb[1]);\(rgb[2])m\(reader.asString())\033[0m")
+    ++i
+  }
+  RETURN 0
+}
